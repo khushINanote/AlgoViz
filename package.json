@@ -1,0 +1,10 @@
+{
+    "name": "algoviz-root",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build": "cd frontend && npm install && npm run build",
+        "install-backend": "cd backend && npm install",
+        "start": "cd backend && npm start"
+    }
+}
