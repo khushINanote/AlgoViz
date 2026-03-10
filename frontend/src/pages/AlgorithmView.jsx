@@ -450,30 +450,27 @@ const AlgorithmView = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
-                {/* Left Column: Code & Details */}
                 <div className="lg:col-span-1 flex flex-col gap-4">
-                    {/* Live Stats Row */}
-                    <div className="flex gap-2">
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs flex-1 text-center shadow-sm">
-                            <span className="block text-slate-500 uppercase tracking-widest mb-0.5" style={{ fontSize: '10px' }}>Comparisons</span>
+                    {/* Live Stats Row - Stable Layout */}
+                    <div className="flex gap-2 h-14">
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Comparisons</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.comparisons}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs flex-1 text-center shadow-sm">
-                            <span className="block text-slate-500 uppercase tracking-widest mb-0.5" style={{ fontSize: '10px' }}>Swaps</span>
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Swaps</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.swaps}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs flex-1 text-center shadow-sm">
-                            <span className="block text-slate-500 uppercase tracking-widest mb-0.5" style={{ fontSize: '10px' }}>Memory</span>
-                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">
-                                {algoData.spaceComplexity === 'O(1)' ? 'Fixed' : `${arraySize * 4} B`}
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Memory</span>
+                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200 truncate">
+                                {algoData.spaceComplexity === 'O(1)' ? 'Fixed' : `${arraySize * 4}B`}
                             </span>
                         </div>
-                        {currentState.stats.depth > 0 && (
-                            <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs flex-1 text-center shadow-sm">
-                                <span className="block text-slate-500 uppercase tracking-widest mb-0.5" style={{ fontSize: '10px' }}>Stack Depth</span>
-                                <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.depth}</span>
-                            </div>
-                        )}
+                        <div className={`bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm transition-opacity ${currentState.stats.depth > 0 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Depth</span>
+                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.depth}</span>
+                        </div>
                     </div>
 
                     <div className="bg-slate-900 rounded-xl overflow-hidden shadow-md flex-grow border border-slate-700 flex flex-col">
@@ -485,19 +482,19 @@ const AlgorithmView = () => {
                             </div>
                             <span className="ml-4 text-xs font-mono text-slate-400">algorithm.js</span>
                         </div>
-                        <pre className="p-4 overflow-x-auto text-sm font-mono text-slate-300 flex-grow max-h-[300px] overflow-y-auto">
+                        <pre className="p-4 overflow-x-auto text-[13px] font-mono text-slate-300 flex-grow max-h-[350px] overflow-y-auto thin-scrollbar">
                             {algoData.code.split('\n').map((line, idx) => (
                                 <div
                                     key={idx}
                                     className={`px-2 py-0.5 rounded transition-colors ${currentState.activeCodeLine === idx ? 'bg-indigo-600/30 border-l-2 border-indigo-400 text-white' : 'border-l-2 border-transparent hover:bg-slate-800/50'}`}
                                 >
-                                    <span className="opacity-50 mr-4 text-xs">{idx + 1}</span>
+                                    <span className="opacity-30 mr-4 text-[10px] inline-block w-4 text-right select-none">{idx + 1}</span>
                                     {line}
                                 </div>
                             ))}
                         </pre>
                         {currentState.stats.depth > 0 && (
-                            <div className="p-4 border-t border-slate-700 bg-slate-800/50">
+                            <div className="p-3 border-t border-slate-700 bg-slate-800/50 max-h-[220px] overflow-y-auto thin-scrollbar">
                                 <RecursionTree history={executionHistory} currentStep={currentStep} />
                             </div>
                         )}
@@ -529,139 +526,139 @@ const AlgorithmView = () => {
                         )}
                     </div>
                 </div>
+            </div>
 
-                {/* Right Column: Visualization Panel */}
-                <div className="lg:col-span-2 flex flex-col">
-                    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-col p-6 min-h-[400px]">
-                        {showCompletionMessage && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-300 px-4 py-2 rounded-full font-medium flex items-center text-sm shadow-md transition-all">
-                                <CheckCircle2 size={16} className="mr-2" /> Sorting Complete! Progress saved.
-                            </div>
-                        )}
-
-                        {/* Step Description Toast */}
-                        {currentState.stepDescription && currentState.stepDescription !== 'Loading...' && !showCompletionMessage && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-indigo-100/90 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-sm backdrop-blur-sm">
-                                {currentState.stepDescription}
-                            </div>
-                        )}
-
-                        <div className="absolute top-4 right-4 z-10 flex space-x-2">
-                            <select
-                                disabled={isPlaying}
-                                value={arrayPattern}
-                                onChange={(e) => generateNewArray(arraySize, e.target.value)}
-                                className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 outline-none"
-                            >
-                                {arrayPatterns.map(p => <option key={p} value={p}>{p}</option>)}
-                            </select>
-                            <button
-                                onClick={() => generateNewArray(arraySize)}
-                                disabled={isPlaying}
-                                className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition disabled:opacity-50 border border-slate-300 dark:border-slate-600"
-                                title="Randomize Data"
-                            >
-                                <RefreshCcw size={14} />
-                            </button>
+            {/* Right Column: Visualization Panel */}
+            <div className="lg:col-span-2 flex flex-col">
+                <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-col p-6 min-h-[400px]">
+                    {showCompletionMessage && (
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-300 px-4 py-2 rounded-full font-medium flex items-center text-sm shadow-md transition-all">
+                            <CheckCircle2 size={16} className="mr-2" /> Sorting Complete! Progress saved.
                         </div>
+                    )}
 
-                        <div className="flex-grow flex items-end justify-center h-full pb-6 gap-px mt-8">
-                            {currentState.array.map((val, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`flex-1 min-w-0 rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
-                                            currentState.colors[idx] === 'swapping' ? 'bg-rose-500' :
-                                                currentState.colors[idx] === 'sorted' ? 'bg-emerald-400' :
-                                                    currentState.colors[idx] === 'current' ? 'bg-indigo-500' :
-                                                        'bg-indigo-300 dark:bg-indigo-600'
-                                        }`}
-                                    style={{ height: `${(val / 100) * 90}%` }}
-                                />
-                            ))}
+                    {/* Step Description Toast */}
+                    {currentState.stepDescription && currentState.stepDescription !== 'Loading...' && !showCompletionMessage && (
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-indigo-100/90 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-sm backdrop-blur-sm">
+                            {currentState.stepDescription}
                         </div>
+                    )}
 
-                        {/* Execution Timeline */}
-                        <div className="mt-auto border-t border-slate-100 dark:border-slate-800 pt-4 px-2 overflow-hidden">
-                            <div className="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar">
-                                {executionHistory.slice(Math.max(0, currentStep - 5), currentStep + 1).map((step, i) => (
-                                    <div
-                                        key={i}
-                                        className={`whitespace-nowrap px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tight transition-all ${step === currentState ? 'bg-indigo-600 text-white scale-110 shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
-                                            }`}
-                                    >
-                                        {step.stepDescription.includes('Comparing') ? 'Compare' :
-                                            step.stepDescription.includes('Swapping') ? 'Swap' :
-                                                step.stepDescription.includes('Overwriting') ? 'Insert' : 'Step'}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                    <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                        <select
+                            disabled={isPlaying}
+                            value={arrayPattern}
+                            onChange={(e) => generateNewArray(arraySize, e.target.value)}
+                            className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 outline-none"
+                        >
+                            {arrayPatterns.map(p => <option key={p} value={p}>{p}</option>)}
+                        </select>
+                        <button
+                            onClick={() => generateNewArray(arraySize)}
+                            disabled={isPlaying}
+                            className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition disabled:opacity-50 border border-slate-300 dark:border-slate-600"
+                            title="Randomize Data"
+                        >
+                            <RefreshCcw size={14} />
+                        </button>
                     </div>
 
-                    <ControlPanel
-                        isPlaying={isPlaying}
-                        onPlayPause={handlePlayPause}
-                        onReset={() => generateNewArray(arraySize)}
-                        onStepForward={handleStepForward}
-                        onStepBack={handleStepBack}
-                        disableStepForward={currentStep >= executionHistory.length - 1}
-                        disableStepBack={currentStep === 0}
-                        speed={speed}
-                        onSpeedChange={setSpeed}
-                        arraySize={arraySize}
-                        onArraySizeChange={handleSizeChange}
-                        onGenerateRandom={() => generateNewArray(arraySize)}
-                        customList={null}
-                        onCustomListChange={(arr) => {
-                            const size = arr.length;
-                            setArraySize(size);
-                            // Rebuild animation history from the custom input array
-                            const arrCopy = [...arr];
-                            let animations = [];
-                            if (id === 'bubble-sort') animations = bubbleSortAnimations(arrCopy);
-                            else if (id === 'selection-sort') animations = selectionSortAnimations(arrCopy);
-                            else if (id === 'insertion-sort') animations = insertionSortAnimations(arrCopy);
-                            else if (id === 'merge-sort') animations = mergeSortAnimations(arrCopy);
-                            else if (id === 'quick-sort') animations = quickSortAnimations(arrCopy);
-                            else if (id === 'linear-search') animations = linearSearchAnimations([...arr], targetValue);
-                            else if (id === 'binary-search') {
-                                const sorted = [...arr].sort((a, b) => a - b);
-                                animations = binarySearchAnimations(sorted, targetValue);
-                                arr = sorted;
-                            }
+                    <div className="flex-grow flex items-end justify-center h-full pb-6 gap-px mt-8">
+                        {currentState.array.map((val, idx) => (
+                            <div
+                                key={idx}
+                                className={`flex-1 min-w-0 rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
+                                    currentState.colors[idx] === 'swapping' ? 'bg-rose-500' :
+                                        currentState.colors[idx] === 'sorted' ? 'bg-emerald-400' :
+                                            currentState.colors[idx] === 'current' ? 'bg-indigo-500' :
+                                                'bg-indigo-300 dark:bg-indigo-600'
+                                    }`}
+                                style={{ height: `${(val / 100) * 90}%` }}
+                            />
+                        ))}
+                    </div>
 
-                            let currentArr = [...arr];
-                            let comparisons = 0, swaps = 0;
-                            let history = [{ array: [...currentArr], colors: Array(size).fill('default'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Custom array loaded.' }];
-
-                            for (let anim of animations) {
-                                let currentColors = Array(size).fill('default');
-                                let stepDescription = '';
-                                if (anim.type === 'compare') {
-                                    if (anim.indices[0] !== undefined) currentColors[anim.indices[0]] = 'comparing';
-                                    if (anim.indices[1] !== undefined) currentColors[anim.indices[1]] = 'comparing';
-                                    comparisons++; stepDescription = `Comparing indices ${anim.indices[0]} and ${anim.indices[1]}`;
-                                } else if (anim.type === 'swap') {
-                                    currentColors[anim.indices[0]] = 'swapping'; currentColors[anim.indices[1]] = 'swapping';
-                                    currentArr = [...currentArr]; currentArr[anim.indices[0]] = anim.values[0]; currentArr[anim.indices[1]] = anim.values[1];
-                                    swaps++; stepDescription = `Swapping ${anim.values[0]} and ${anim.values[1]}`;
-                                } else if (anim.type === 'overwrite') {
-                                    currentColors[anim.index] = 'swapping';
-                                    currentArr = [...currentArr]; currentArr[anim.index] = anim.value;
-                                    swaps++; stepDescription = `Placing ${anim.value} at index ${anim.index}`;
-                                }
-                                history.push({ type: anim.type, array: [...currentArr], colors: currentColors, activeCodeLine: -1, stats: { comparisons, swaps, depth: anim.depth || 0 }, stepDescription });
-                            }
-                            history.push({ array: [...currentArr], colors: Array(size).fill('sorted'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Done!' });
-                            setExecutionHistory(history);
-                            setCurrentStep(0);
-                            setIsPlaying(false);
-                        }}
-                        targetValue={targetValue}
-                        onTargetValueChange={setTargetValue}
-                        isSearching={isSearching}
-                    />
+                    {/* Execution Timeline */}
+                    <div className="mt-auto border-t border-slate-100 dark:border-slate-800 pt-4 px-2 overflow-hidden">
+                        <div className="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar">
+                            {executionHistory.slice(Math.max(0, currentStep - 5), currentStep + 1).map((step, i) => (
+                                <div
+                                    key={i}
+                                    className={`whitespace-nowrap px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tight transition-all ${step === currentState ? 'bg-indigo-600 text-white scale-110 shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
+                                        }`}
+                                >
+                                    {step.stepDescription.includes('Comparing') ? 'Compare' :
+                                        step.stepDescription.includes('Swapping') ? 'Swap' :
+                                            step.stepDescription.includes('Overwriting') ? 'Insert' : 'Step'}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
+
+                <ControlPanel
+                    isPlaying={isPlaying}
+                    onPlayPause={handlePlayPause}
+                    onReset={() => generateNewArray(arraySize)}
+                    onStepForward={handleStepForward}
+                    onStepBack={handleStepBack}
+                    disableStepForward={currentStep >= executionHistory.length - 1}
+                    disableStepBack={currentStep === 0}
+                    speed={speed}
+                    onSpeedChange={setSpeed}
+                    arraySize={arraySize}
+                    onArraySizeChange={handleSizeChange}
+                    onGenerateRandom={() => generateNewArray(arraySize)}
+                    customList={null}
+                    onCustomListChange={(arr) => {
+                        const size = arr.length;
+                        setArraySize(size);
+                        // Rebuild animation history from the custom input array
+                        const arrCopy = [...arr];
+                        let animations = [];
+                        if (id === 'bubble-sort') animations = bubbleSortAnimations(arrCopy);
+                        else if (id === 'selection-sort') animations = selectionSortAnimations(arrCopy);
+                        else if (id === 'insertion-sort') animations = insertionSortAnimations(arrCopy);
+                        else if (id === 'merge-sort') animations = mergeSortAnimations(arrCopy);
+                        else if (id === 'quick-sort') animations = quickSortAnimations(arrCopy);
+                        else if (id === 'linear-search') animations = linearSearchAnimations([...arr], targetValue);
+                        else if (id === 'binary-search') {
+                            const sorted = [...arr].sort((a, b) => a - b);
+                            animations = binarySearchAnimations(sorted, targetValue);
+                            arr = sorted;
+                        }
+
+                        let currentArr = [...arr];
+                        let comparisons = 0, swaps = 0;
+                        let history = [{ array: [...currentArr], colors: Array(size).fill('default'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Custom array loaded.' }];
+
+                        for (let anim of animations) {
+                            let currentColors = Array(size).fill('default');
+                            let stepDescription = '';
+                            if (anim.type === 'compare') {
+                                if (anim.indices[0] !== undefined) currentColors[anim.indices[0]] = 'comparing';
+                                if (anim.indices[1] !== undefined) currentColors[anim.indices[1]] = 'comparing';
+                                comparisons++; stepDescription = `Comparing indices ${anim.indices[0]} and ${anim.indices[1]}`;
+                            } else if (anim.type === 'swap') {
+                                currentColors[anim.indices[0]] = 'swapping'; currentColors[anim.indices[1]] = 'swapping';
+                                currentArr = [...currentArr]; currentArr[anim.indices[0]] = anim.values[0]; currentArr[anim.indices[1]] = anim.values[1];
+                                swaps++; stepDescription = `Swapping ${anim.values[0]} and ${anim.values[1]}`;
+                            } else if (anim.type === 'overwrite') {
+                                currentColors[anim.index] = 'swapping';
+                                currentArr = [...currentArr]; currentArr[anim.index] = anim.value;
+                                swaps++; stepDescription = `Placing ${anim.value} at index ${anim.index}`;
+                            }
+                            history.push({ type: anim.type, array: [...currentArr], colors: currentColors, activeCodeLine: -1, stats: { comparisons, swaps, depth: anim.depth || 0 }, stepDescription });
+                        }
+                        history.push({ array: [...currentArr], colors: Array(size).fill('sorted'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Done!' });
+                        setExecutionHistory(history);
+                        setCurrentStep(0);
+                        setIsPlaying(false);
+                    }}
+                    targetValue={targetValue}
+                    onTargetValueChange={setTargetValue}
+                    isSearching={isSearching}
+                />
             </div>
         </div>
     );
