@@ -12,10 +12,18 @@ connectDB();
 
 const app = express();
 app.use(cors({
-    origin: true, // This will reflect the request origin back to the user
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        // In production, you might want to restrict this to your specific domains
+        // For now, we reflect the origin to satisfy 'credentials: true'
+        callback(null, origin);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 app.use(express.json());
 
