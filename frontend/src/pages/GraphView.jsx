@@ -179,6 +179,7 @@ const GraphView = () => {
         setStartTime(Date.now());
 
         const startNodeId = nodes.find(n => n.id === 'A')?.id || nodes[0]?.id || 'A';
+        let animations = [];
         if (id === 'bfs') animations = bfsAnimations(nodes, edges, startNodeId);
         else if (id === 'dfs') animations = dfsAnimations(nodes, edges, startNodeId);
         else if (id === 'dijkstra') animations = dijkstraAnimations(nodes, edges, startNodeId);

@@ -565,14 +565,17 @@ const AlgorithmView = () => {
                             </button>
                         </div>
 
-                        <div className="flex-grow flex items-end justify-center h-full px-2 pb-6 gap-[1px] md:gap-1 mt-8">
+                        <div className="flex-grow flex items-end justify-center h-full pb-6 gap-px mt-8">
                             {currentState.array.map((val, idx) => (
-                                <ArrayBar
+                                <div
                                     key={idx}
-                                    value={val}
-                                    maxValue={100}
-                                    state={currentState.colors[idx]}
-                                    width={max(2, 100 / arraySize)}
+                                    className={`flex-1 min-w-0 rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
+                                            currentState.colors[idx] === 'swapping' ? 'bg-rose-500' :
+                                                currentState.colors[idx] === 'sorted' ? 'bg-emerald-400' :
+                                                    currentState.colors[idx] === 'current' ? 'bg-indigo-500' :
+                                                        'bg-indigo-300 dark:bg-indigo-600'
+                                        }`}
+                                    style={{ height: `${(val / 100) * 90}%` }}
                                 />
                             ))}
                         </div>
@@ -610,9 +613,49 @@ const AlgorithmView = () => {
                         onGenerateRandom={() => generateNewArray(arraySize)}
                         customList={null}
                         onCustomListChange={(arr) => {
-                            setArraySize(arr.length);
-                            setBaseArray([...arr]);
-                            setArray([...arr]);
+                            const size = arr.length;
+                            setArraySize(size);
+                            // Rebuild animation history from the custom input array
+                            const arrCopy = [...arr];
+                            let animations = [];
+                            if (id === 'bubble-sort') animations = bubbleSortAnimations(arrCopy);
+                            else if (id === 'selection-sort') animations = selectionSortAnimations(arrCopy);
+                            else if (id === 'insertion-sort') animations = insertionSortAnimations(arrCopy);
+                            else if (id === 'merge-sort') animations = mergeSortAnimations(arrCopy);
+                            else if (id === 'quick-sort') animations = quickSortAnimations(arrCopy);
+                            else if (id === 'linear-search') animations = linearSearchAnimations([...arr], targetValue);
+                            else if (id === 'binary-search') {
+                                const sorted = [...arr].sort((a, b) => a - b);
+                                animations = binarySearchAnimations(sorted, targetValue);
+                                arr = sorted;
+                            }
+
+                            let currentArr = [...arr];
+                            let comparisons = 0, swaps = 0;
+                            let history = [{ array: [...currentArr], colors: Array(size).fill('default'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Custom array loaded.' }];
+
+                            for (let anim of animations) {
+                                let currentColors = Array(size).fill('default');
+                                let stepDescription = '';
+                                if (anim.type === 'compare') {
+                                    if (anim.indices[0] !== undefined) currentColors[anim.indices[0]] = 'comparing';
+                                    if (anim.indices[1] !== undefined) currentColors[anim.indices[1]] = 'comparing';
+                                    comparisons++; stepDescription = `Comparing indices ${anim.indices[0]} and ${anim.indices[1]}`;
+                                } else if (anim.type === 'swap') {
+                                    currentColors[anim.indices[0]] = 'swapping'; currentColors[anim.indices[1]] = 'swapping';
+                                    currentArr = [...currentArr]; currentArr[anim.indices[0]] = anim.values[0]; currentArr[anim.indices[1]] = anim.values[1];
+                                    swaps++; stepDescription = `Swapping ${anim.values[0]} and ${anim.values[1]}`;
+                                } else if (anim.type === 'overwrite') {
+                                    currentColors[anim.index] = 'swapping';
+                                    currentArr = [...currentArr]; currentArr[anim.index] = anim.value;
+                                    swaps++; stepDescription = `Placing ${anim.value} at index ${anim.index}`;
+                                }
+                                history.push({ type: anim.type, array: [...currentArr], colors: currentColors, activeCodeLine: -1, stats: { comparisons, swaps, depth: anim.depth || 0 }, stepDescription });
+                            }
+                            history.push({ array: [...currentArr], colors: Array(size).fill('sorted'), activeCodeLine: -1, stats: { comparisons, swaps }, stepDescription: 'Done!' });
+                            setExecutionHistory(history);
+                            setCurrentStep(0);
+                            setIsPlaying(false);
                         }}
                         targetValue={targetValue}
                         onTargetValueChange={setTargetValue}

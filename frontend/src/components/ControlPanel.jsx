@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Play, Pause, SkipForward, SkipBack, RotateCcw } from 'lucide-react';
 
 const ControlPanel = ({
@@ -20,11 +20,16 @@ const ControlPanel = ({
     onTargetValueChange,
     isSearching
 }) => {
+    const customListRef = useRef('');
+
+    const parseAndRun = () => {
+        const arr = customListRef.current.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+        if (arr.length > 0) onCustomListChange(arr);
+    };
+
     const handleCustomListApply = (e) => {
-        if (e.key === 'Enter') {
-            const arr = e.target.value.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
-            if (arr.length > 0) onCustomListChange(arr);
-        }
+        customListRef.current = e.target.value;
+        if (e.key === 'Enter') parseAndRun();
     };
     return (
         <div className="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 mt-4 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -102,13 +107,23 @@ const ControlPanel = ({
             <div className="w-full flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
                 <div className="flex-grow">
                     <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 block uppercase tracking-wider">Custom List (comma separated)</label>
-                    <input
-                        type="text"
-                        placeholder="e.g. 45, 12, 89, 34"
-                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500/50 transition tracking-wide text-slate-700 dark:text-slate-200"
-                        onKeyDown={handleCustomListApply}
-                        disabled={isPlaying}
-                    />
+                    <div className="flex gap-2">
+                        <input
+                            type="text"
+                            placeholder="e.g. 45, 12, 89, 34"
+                            className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500/50 transition tracking-wide text-slate-700 dark:text-slate-200"
+                            onChange={(e) => { customListRef.current = e.target.value; }}
+                            onKeyDown={handleCustomListApply}
+                            disabled={isPlaying}
+                        />
+                        <button
+                            onClick={parseAndRun}
+                            disabled={isPlaying}
+                            className="px-4 py-1.5 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 whitespace-nowrap"
+                        >
+                            Run
+                        </button>
+                    </div>
                 </div>
                 {isSearching && (
                     <div className="sm:w-32">
