@@ -32,75 +32,67 @@ const ControlPanel = ({
         if (e.key === 'Enter') parseAndRun();
     };
     return (
-        <div className="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 mt-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 mt-4 flex flex-col lg:flex-row items-center justify-between gap-6">
 
             {/* Playback Controls */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full lg:w-auto">
                 <button
                     onClick={onStepBack}
                     disabled={disableStepBack || isPlaying}
-                    className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-50 transition"
+                    className="p-2 sm:p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-50 transition"
                     title="Previous Step"
                 >
-                    <SkipBack size={18} />
+                    <SkipBack size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
                 <button
                     onClick={onPlayPause}
-                    className="p-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-sm"
+                    className="p-3 sm:p-4 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-sm"
                 >
-                    {isPlaying ? <Pause size={20} /> : <Play size={20} className="ml-0.5" />}
+                    {isPlaying ? <Pause size={20} className="sm:w-[24px] sm:h-[24px]" /> : <Play size={20} className="sm:w-[24px] sm:h-[24px] ml-0.5" />}
                 </button>
                 <button
                     onClick={onStepForward}
                     disabled={disableStepForward || isPlaying}
-                    className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-50 transition"
+                    className="p-2 sm:p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-50 transition"
                     title="Next Step"
                 >
-                    <SkipForward size={18} />
+                    <SkipForward size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
                 <button
                     onClick={onReset}
-                    className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 transition"
+                    className="p-2 sm:p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full hover:bg-slate-200 dark:hover:bg-slate-600 transition"
                 >
-                    <RotateCcw size={18} />
+                    <RotateCcw size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
             </div>
 
-            <div className="flex items-center gap-6 w-full md:w-auto flex-wrap sm:flex-nowrap">
+            <div className="flex items-center gap-4 sm:gap-6 w-full lg:w-auto">
                 {/* Array Controls */}
-                <div className="flex-1 md:w-28">
-                    <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 block">Array Size</label>
+                <div className="flex-grow sm:flex-initial sm:w-32">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1 block">Size: {arraySize}</label>
                     <input
                         type="range"
                         min="10"
                         max="100"
                         value={arraySize}
                         onChange={(e) => onArraySizeChange(parseInt(e.target.value))}
-                        className="w-full accent-indigo-600"
+                        className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         disabled={isPlaying}
                     />
                 </div>
 
                 {/* Speed Controls */}
-                <div className="flex-1 md:w-28">
-                    <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 block">Animation Speed</label>
+                <div className="flex-grow sm:flex-initial sm:w-32">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1 block">Speed: {speed}%</label>
                     <input
                         type="range"
                         min="1"
                         max="100"
                         value={speed}
                         onChange={(e) => onSpeedChange(parseInt(e.target.value))}
-                        className="w-full accent-indigo-600"
+                        className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                     />
                 </div>
-
-                <button
-                    onClick={onGenerateRandom}
-                    disabled={isPlaying}
-                    className="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition disabled:opacity-50 mt-2 sm:mt-0 whitespace-nowrap"
-                >
-                    New Array
-                </button>
             </div>
 
             {/* Custom Inputs Row */}

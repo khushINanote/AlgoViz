@@ -414,7 +414,7 @@ const AlgorithmView = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col min-h-[calc(100vh-140px)]">
             {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{algoData.name}</h1>
                     <div className="flex items-center gap-2 mt-1">
@@ -450,24 +450,25 @@ const AlgorithmView = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
-                <div className="lg:col-span-1 flex flex-col gap-4">
-                    {/* Live Stats Row - Stable Layout */}
-                    <div className="flex gap-2 h-14">
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                {/* Left/Top Column: Stats & Code */}
+                <div className="lg:col-span-1 flex flex-col gap-4 order-2 lg:order-1">
+                    {/* Live Stats Row - Responsive Wrap */}
+                    <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
                             <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Comparisons</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.comparisons}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
                             <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Swaps</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.swaps}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm">
+                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
                             <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Memory</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200 truncate">
                                 {algoData.spaceComplexity === 'O(1)' ? 'Fixed' : `${arraySize * 4}B`}
                             </span>
                         </div>
-                        <div className={`bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 flex-1 min-w-[70px] flex flex-col items-center justify-center shadow-sm transition-opacity ${currentState.stats.depth > 0 ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className={`bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm transition-opacity ${currentState.stats.depth > 0 ? 'opacity-100' : 'opacity-0'}`}>
                             <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Depth</span>
                             <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.depth}</span>
                         </div>
@@ -526,10 +527,9 @@ const AlgorithmView = () => {
                         )}
                     </div>
                 </div>
-            </div>
 
-            {/* Right Column: Visualization Panel */}
-            <div className="lg:col-span-2 flex flex-col">
+                {/* Right/Top Column: Visualization Panel */}
+                <div className="lg:col-span-2 flex flex-col order-1 lg:order-2">
                 <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-col p-6 min-h-[400px]">
                     {showCompletionMessage && (
                         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-300 px-4 py-2 rounded-full font-medium flex items-center text-sm shadow-md transition-all">
@@ -539,7 +539,7 @@ const AlgorithmView = () => {
 
                     {/* Step Description Toast */}
                     {currentState.stepDescription && currentState.stepDescription !== 'Loading...' && !showCompletionMessage && (
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-indigo-100/90 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-sm backdrop-blur-sm">
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-indigo-100/90 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-4 sm:px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-[11px] sm:text-sm backdrop-blur-sm max-w-[90%] truncate">
                             {currentState.stepDescription}
                         </div>
                     )}
@@ -563,11 +563,11 @@ const AlgorithmView = () => {
                         </button>
                     </div>
 
-                    <div className="flex-grow flex items-end justify-center h-full pb-6 gap-px mt-8">
+                    <div className="flex-grow flex items-end justify-center pb-6 gap-[1px] mt-12 overflow-x-auto min-h-[250px] sm:min-h-[350px]">
                         {currentState.array.map((val, idx) => (
                             <div
                                 key={idx}
-                                className={`flex-1 min-w-0 rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
+                                className={`flex-1 min-w-[2px] sm:min-w-[4px] rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
                                     currentState.colors[idx] === 'swapping' ? 'bg-rose-500' :
                                         currentState.colors[idx] === 'sorted' ? 'bg-emerald-400' :
                                             currentState.colors[idx] === 'current' ? 'bg-indigo-500' :
@@ -659,6 +659,7 @@ const AlgorithmView = () => {
                     onTargetValueChange={setTargetValue}
                     isSearching={isSearching}
                 />
+                </div>
             </div>
         </div>
     );

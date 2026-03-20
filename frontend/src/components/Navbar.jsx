@@ -28,9 +28,9 @@ const Navbar = () => {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden sm:flex items-center space-x-4">
+                    <div className="hidden md:flex items-center space-x-6">
                         <ThemeToggle />
-                        <Link to="/algorithms" className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium tracking-wide">
+                        <Link to="/algorithms" className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors">
                             Explore
                         </Link>
                         {user ? (
@@ -54,12 +54,12 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Mobile: Theme toggle + Hamburger */}
-                    <div className="flex items-center gap-2 sm:hidden">
+                    {/* Mobile Menu Button */}
+                    <div className="flex items-center gap-3 md:hidden">
                         <ThemeToggle />
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            className="p-2 -mr-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                             aria-label="Toggle menu"
                         >
                             {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -70,7 +70,8 @@ const Navbar = () => {
 
             {/* Mobile Menu Dropdown */}
             {menuOpen && (
-                <div className="sm:hidden bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 px-4 py-4 flex flex-col gap-4">
+                <div className="md:hidden bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 animate-in slide-in-from-top duration-200">
+                    <div className="px-4 py-6 flex flex-col gap-4">
                     <Link
                         to="/algorithms"
                         onClick={closeMenu}
@@ -115,7 +116,8 @@ const Navbar = () => {
                         </>
                     )}
                 </div>
-            )}
+            </div>
+        )}
         </nav>
     );
 };
