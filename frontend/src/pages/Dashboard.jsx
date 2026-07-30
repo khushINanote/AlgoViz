@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     if (loading) return <div className="p-8 text-center text-secondary-text">Loading dashboard...</div>;
 
-    const totalAlgorithms = 10; // Temp constant
+    const totalAlgorithms = 25;
     const completed = progress?.completedAlgorithms?.length || 0;
     const percentage = Math.round((completed / totalAlgorithms) * 100);
 
