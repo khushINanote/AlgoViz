@@ -4,7 +4,7 @@ const ArrayBar = ({ value, maxValue, state, width }) => {
     const heightPercent = (value / maxValue) * 100;
 
     // States: default, comparing, swapping, sorted
-    let colorClass = "bg-primary-accent dark:bg-primary-accent";
+    let colorClass = "bg-gray-400 dark:bg-gray-400";
     if (state === 'comparing') colorClass = "bg-yellow-400";
     if (state === 'swapping') colorClass = "bg-red-500";
     if (state === 'sorted') colorClass = "bg-emerald-500";
