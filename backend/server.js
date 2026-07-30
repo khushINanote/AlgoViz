@@ -7,8 +7,6 @@ import progressRoutes from './routes/progressRoutes.js';
 
 dotenv.config();
 
-connectDB();
-
 const app = express();
 
 // Manual CORS headers - must be FIRST middleware, before everything else
@@ -19,6 +17,7 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Headers',
         'Content-Type, Authorization, X-Requested-With, Accept'
     );
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     // Handle preflight (OPTIONS) requests immediately
     if (req.method === 'OPTIONS') {
@@ -29,6 +28,21 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+// Lazy DB connection middleware - connects once, then reuses
+let dbConnected = false;
+app.use(async (req, res, next) => {
+    if (!dbConnected) {
+        try {
+            await connectDB();
+            dbConnected = true;
+        } catch (error) {
+            console.error('DB connection failed:', error.message);
+            return res.status(500).json({ message: 'Database connection failed' });
+        }
+    }
+    next();
+});
 
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'AlgoViz API is running' });
