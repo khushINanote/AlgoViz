@@ -12,7 +12,7 @@ const Badges = ({ progress }) => {
             desc: 'Completed first algorithm',
             icon: <Zap size={20} />,
             earned: completedCount >= 1,
-            color: 'text-amber-500',
+            color: 'text-warning',
             bg: 'bg-amber-50 dark:bg-amber-900/20'
         },
         {
@@ -21,8 +21,8 @@ const Badges = ({ progress }) => {
             desc: 'Spent over 5 mins learning',
             icon: <Zap size={20} />,
             earned: (progress?.totalTimeSpent || 0) > 300,
-            color: 'text-indigo-500',
-            bg: 'bg-indigo-50 dark:bg-indigo-900/20'
+            color: 'text-primary-accent',
+            bg: 'bg-primary-accent dark:bg-primary-accent/20'
         },
         {
             id: 'quiz-master',
@@ -45,22 +45,22 @@ const Badges = ({ progress }) => {
     ];
 
     return (
-        <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Achievements</h2>
+        <div className="bg-secondary-bg dark:bg-sidebar p-8 rounded-xl shadow-sm border border-border dark:border-border">
+            <h2 className="text-xl font-bold text-primary-text dark:text-secondary-bg mb-6">Achievements</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {badges.map(badge => (
                     <div
                         key={badge.id}
                         className={`flex flex-col items-center p-4 rounded-xl border transition-all ${badge.earned
                                 ? `${badge.bg} border-transparent scale-100`
-                                : 'bg-slate-50 dark:bg-slate-900/50 border-slate-100 dark:border-slate-800 grayscale opacity-40'
+                                : 'bg-primary-bg dark:bg-sidebar/50 border-border dark:border-border grayscale opacity-40'
                             }`}
                     >
-                        <div className={`p-3 rounded-full bg-white dark:bg-slate-800 shadow-sm mb-3 ${badge.color}`}>
+                        <div className={`p-3 rounded-full bg-secondary-bg dark:bg-sidebar shadow-sm mb-3 ${badge.color}`}>
                             {badge.icon}
                         </div>
-                        <h4 className="text-xs font-bold text-slate-900 dark:text-white text-center mb-1">{badge.name}</h4>
-                        <p className="text-[10px] text-slate-500 dark:text-slate-400 text-center leading-tight">{badge.desc}</p>
+                        <h4 className="text-xs font-bold text-primary-text dark:text-secondary-bg text-center mb-1">{badge.name}</h4>
+                        <p className="text-[10px] text-secondary-text dark:text-secondary-text text-center leading-tight">{badge.desc}</p>
                     </div>
                 ))}
             </div>

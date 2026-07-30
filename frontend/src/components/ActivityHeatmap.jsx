@@ -51,7 +51,7 @@ const ActivityHeatmap = ({ activities }) => {
     });
 
     const getColor = (count) => {
-        if (count === 0) return 'bg-slate-100 dark:bg-slate-800';
+        if (count === 0) return 'bg-primary-bg dark:bg-sidebar';
         if (count <= 2) return 'bg-emerald-200 dark:bg-emerald-900/60';
         if (count <= 4) return 'bg-emerald-400 dark:bg-emerald-700';
         if (count <= 6) return 'bg-emerald-500 dark:bg-emerald-600';
@@ -59,14 +59,14 @@ const ActivityHeatmap = ({ activities }) => {
     };
 
     return (
-        <div className="mt-8 bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="mt-8 bg-secondary-bg dark:bg-sidebar p-6 rounded-xl shadow-sm border border-border dark:border-border transition-colors">
             <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                <h3 className="text-sm font-semibold text-primary-text dark:text-secondary-bg">
                     {activities?.length || 0} submissions in the last year
                 </h3>
-                <div className="flex items-center gap-1 text-[10px] text-slate-400">
+                <div className="flex items-center gap-1 text-[10px] text-secondary-text">
                     <span>Total active days:</span>
-                    <span className="text-slate-600 dark:text-slate-300 font-bold">
+                    <span className="text-secondary-text dark:text-secondary-text font-bold">
                         {new Set(activities?.map(a => new Date(a.date).toDateString())).size}
                     </span>
                 </div>
@@ -78,7 +78,7 @@ const ActivityHeatmap = ({ activities }) => {
                     {labels.map((l, i) => (
                         <span
                             key={i}
-                            className="absolute text-[9px] text-slate-400 font-medium"
+                            className="absolute text-[9px] text-secondary-text font-medium"
                             style={{ left: `${l.index * 13.5}px` }}
                         >
                             {l.label}
@@ -88,7 +88,7 @@ const ActivityHeatmap = ({ activities }) => {
 
                 <div className="flex">
                     {/* Day Labels */}
-                    <div className="flex flex-col justify-between pr-2 text-[9px] text-slate-400 h-[88px] pt-1">
+                    <div className="flex flex-col justify-between pr-2 text-[9px] text-secondary-text h-[88px] pt-1">
                         <span className="h-2.5"></span>
                         <span className="h-2.5">Mon</span>
                         <span className="h-2.5"></span>
@@ -113,12 +113,12 @@ const ActivityHeatmap = ({ activities }) => {
             </div>
 
             <div className="flex items-center justify-between mt-4">
-                <div className="text-[10px] text-slate-400 italic">
+                <div className="text-[10px] text-secondary-text italic">
                     Learn regularly to maintain your streak!
                 </div>
-                <div className="flex items-center gap-1.5 text-[9px] text-slate-400">
+                <div className="flex items-center gap-1.5 text-[9px] text-secondary-text">
                     <span>Less</span>
-                    <div className="w-[10px] h-[10px] rounded-[1px] bg-slate-100 dark:bg-slate-800"></div>
+                    <div className="w-[10px] h-[10px] rounded-[1px] bg-primary-bg dark:bg-sidebar"></div>
                     <div className="w-[10px] h-[10px] rounded-[1px] bg-emerald-200 dark:bg-emerald-900/60"></div>
                     <div className="w-[10px] h-[10px] rounded-[1px] bg-emerald-400 dark:bg-emerald-700"></div>
                     <div className="w-[10px] h-[10px] rounded-[1px] bg-emerald-500 dark:bg-emerald-600"></div>

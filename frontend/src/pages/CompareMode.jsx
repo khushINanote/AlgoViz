@@ -218,28 +218,28 @@ const DualVisualizer = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 h-[calc(100vh-80px)] flex flex-col">
             <div className="mb-4">
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center">
-                    <BarChart2 className="mr-2 text-indigo-500" /> Algorithm Race
+                <h1 className="text-2xl font-bold text-primary-text dark:text-secondary-bg flex items-center">
+                    <BarChart2 className="mr-2 text-primary-accent" /> Algorithm Race
                 </h1>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Visualize and compare two algorithms side-by-side on the exact same dataset.</p>
+                <p className="text-sm text-secondary-text dark:text-secondary-text mt-1">Visualize and compare two algorithms side-by-side on the exact same dataset.</p>
             </div>
 
             {/* Global Controls */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 mb-4 flex flex-wrap items-center justify-between gap-4">
+            <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-sm border border-border dark:border-border p-4 mb-4 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex gap-4 items-center">
                     <div>
-                        <label className="text-xs text-slate-500 block mb-1">Data Pattern</label>
+                        <label className="text-xs text-secondary-text block mb-1">Data Pattern</label>
                         <select
                             disabled={isGlobalPlaying}
                             value={arrayPattern}
                             onChange={(e) => setArrayPattern(e.target.value)}
-                            className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-sm outline-none"
+                            className="px-3 py-1.5 rounded-xl border border-border dark:border-border bg-primary-bg dark:bg-sidebar text-sm outline-none"
                         >
                             {arrayPatterns.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                     </div>
                     <div>
-                        <label className="text-xs text-slate-500 block mb-1">Array Size ({arraySize})</label>
+                        <label className="text-xs text-secondary-text block mb-1">Array Size ({arraySize})</label>
                         <input
                             type="range" min="10" max="100"
                             value={arraySize}
@@ -249,7 +249,7 @@ const DualVisualizer = () => {
                         />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-500 block mb-1">Animation Speed</label>
+                        <label className="text-xs text-secondary-text block mb-1">Animation Speed</label>
                         <input
                             type="range" min="1" max="100"
                             value={speed}
@@ -263,13 +263,13 @@ const DualVisualizer = () => {
                     <button
                         onClick={handleRunBoth}
                         disabled={isGlobalPlaying}
-                        className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition disabled:opacity-50"
+                        className="flex items-center space-x-2 bg-primary-accent hover:bg-primary-accent text-secondary-bg px-6 py-2 rounded-xl font-medium transition disabled:opacity-50"
                     >
                         <Play size={18} /> <span>Start Race</span>
                     </button>
                     <button
                         onClick={handleReset}
-                        className="p-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700 transition"
+                        className="p-2 border border-border dark:border-border rounded-xl text-secondary-text hover:bg-primary-bg dark:text-secondary-text dark:hover:bg-slate-700 transition"
                     >
                         <RotateCcw size={18} />
                     </button>
@@ -280,13 +280,13 @@ const DualVisualizer = () => {
             <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 {/* Algo 1 Panel */}
-                <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col p-4 relative overflow-hidden h-full min-h-[300px]">
+                <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-sm border border-border dark:border-border flex flex-col p-4 relative overflow-hidden h-full min-h-[300px]">
                     <div className="absolute top-4 left-4 right-4 flex justify-between z-10 items-center">
                         <select
                             value={algo1}
                             onChange={e => setAlgo1(e.target.value)}
                             disabled={isGlobalPlaying}
-                            className="px-3 py-1.5 font-bold rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="px-3 py-1.5 font-bold rounded-xl border border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg outline-none focus:ring-2 focus:ring-indigo-500"
                         >
                             {selectOptions.map(opt => <option key={opt.val} value={opt.val}>{opt.label}</option>)}
                         </select>
@@ -294,7 +294,7 @@ const DualVisualizer = () => {
                             <div className="flex gap-2">
                                 <span className={`font-mono text-[10px] font-bold px-3 py-1 rounded-full shadow-sm border ${parseFloat(runStats.algo1Time) <= parseFloat(runStats.algo2Time || Infinity)
                                     ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
-                                    : 'bg-slate-100 text-slate-800 border-slate-200'
+                                    : 'bg-primary-bg text-primary-text border-border'
                                     }`}>
                                     {runStats.algo1Time} ms {parseFloat(runStats.algo1Time) <= parseFloat(runStats.algo2Time || Infinity) && '🏆'}
                                 </span>
@@ -302,11 +302,11 @@ const DualVisualizer = () => {
                         )}
                     </div>
 
-                    <div className="absolute top-16 left-4 flex gap-4 text-[10px] font-mono text-slate-500 z-10 bg-white/80 dark:bg-slate-900/80 px-2 py-1 rounded shadow-sm">
+                    <div className="absolute top-16 left-4 flex gap-4 text-[10px] font-mono text-secondary-text z-10 bg-secondary-bg/80 dark:bg-sidebar/80 px-2 py-1 rounded shadow-sm">
                         <span>C: {liveStats1.comparisons}</span>
                         <span>S: {liveStats1.swaps}</span>
                     </div>
-                    <div className="flex-grow flex items-end justify-center w-full px-2 pb-2 gap-[1px] mt-16 border-b border-slate-100 dark:border-slate-800">
+                    <div className="flex-grow flex items-end justify-center w-full px-2 pb-2 gap-[1px] mt-16 border-b border-border dark:border-border">
                         {arr1.map((val, idx) => (
                             <ArrayBar
                                 key={idx}
@@ -320,13 +320,13 @@ const DualVisualizer = () => {
                 </div>
 
                 {/* Algo 2 Panel */}
-                <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col p-4 relative overflow-hidden h-full min-h-[300px]">
+                <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-sm border border-border dark:border-border flex flex-col p-4 relative overflow-hidden h-full min-h-[300px]">
                     <div className="absolute top-4 left-4 right-4 flex justify-between z-10 items-center">
                         <select
                             value={algo2}
                             onChange={e => setAlgo2(e.target.value)}
                             disabled={isGlobalPlaying}
-                            className="px-3 py-1.5 font-bold rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="px-3 py-1.5 font-bold rounded-xl border border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg outline-none focus:ring-2 focus:ring-emerald-500"
                         >
                             {selectOptions.map(opt => <option key={opt.val} value={opt.val}>{opt.label}</option>)}
                         </select>
@@ -334,7 +334,7 @@ const DualVisualizer = () => {
                             <div className="flex gap-2">
                                 <span className={`font-mono text-[10px] font-bold px-3 py-1 rounded-full shadow-sm border ${parseFloat(runStats.algo2Time) < parseFloat(runStats.algo1Time || Infinity)
                                     ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
-                                    : 'bg-slate-100 text-slate-800 border-slate-200'
+                                    : 'bg-primary-bg text-primary-text border-border'
                                     }`}>
                                     {runStats.algo2Time} ms {parseFloat(runStats.algo2Time) < parseFloat(runStats.algo1Time || Infinity) && '🏆'}
                                 </span>
@@ -342,11 +342,11 @@ const DualVisualizer = () => {
                         )}
                     </div>
 
-                    <div className="absolute top-16 left-4 flex gap-4 text-[10px] font-mono text-slate-500 z-10 bg-white/80 dark:bg-slate-900/80 px-2 py-1 rounded shadow-sm">
+                    <div className="absolute top-16 left-4 flex gap-4 text-[10px] font-mono text-secondary-text z-10 bg-secondary-bg/80 dark:bg-sidebar/80 px-2 py-1 rounded shadow-sm">
                         <span>C: {liveStats2.comparisons}</span>
                         <span>S: {liveStats2.swaps}</span>
                     </div>
-                    <div className="flex-grow flex items-end justify-center w-full px-2 pb-2 gap-[1px] mt-16 border-b border-slate-100 dark:border-slate-800">
+                    <div className="flex-grow flex items-end justify-center w-full px-2 pb-2 gap-[1px] mt-16 border-b border-border dark:border-border">
                         {arr2.map((val, idx) => (
                             <ArrayBar
                                 key={`arr2_${idx}`}
@@ -363,8 +363,8 @@ const DualVisualizer = () => {
 
             {/* Performance Comparison Chart */}
             {runStats.algo1Time && runStats.algo2Time && (
-                <div className="mt-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex-shrink-0">
-                    <h3 className="text-lg font-bold text-slate-800 dark:white mb-6">Performance Comparison</h3>
+                <div className="mt-8 bg-secondary-bg dark:bg-sidebar rounded-xl shadow-sm border border-border dark:border-border p-6 flex-shrink-0">
+                    <h3 className="text-lg font-bold text-primary-text dark:white mb-6">Performance Comparison</h3>
                     <div className="h-64 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
@@ -390,9 +390,9 @@ const DualVisualizer = () => {
                                     content={({ active, payload }) => {
                                         if (active && payload && payload.length) {
                                             return (
-                                                <div className="bg-slate-800 border border-slate-700 p-2 rounded shadow-xl text-xs">
-                                                    <p className="font-bold text-white">{payload[0].payload.name}</p>
-                                                    <p className="text-indigo-400">{payload[0].value} ms</p>
+                                                <div className="bg-sidebar border border-border p-2 rounded shadow-xl text-xs">
+                                                    <p className="font-bold text-secondary-bg">{payload[0].payload.name}</p>
+                                                    <p className="text-primary-accent">{payload[0].value} ms</p>
                                                 </div>
                                             );
                                         }
@@ -413,35 +413,35 @@ const DualVisualizer = () => {
             )}
 
             {/* Algorithm Picking Guide */}
-            <div className="mt-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex-shrink-0">
-                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4">When to use which algorithm?</h3>
+            <div className="mt-8 bg-secondary-bg dark:bg-sidebar rounded-xl shadow-sm border border-border dark:border-border p-6 flex-shrink-0">
+                <h3 className="text-lg font-bold text-primary-text dark:text-secondary-bg mb-4">When to use which algorithm?</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     {[algo1, algo2].includes('quick-sort') && (
-                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
-                            <h4 className="font-semibold text-indigo-600 dark:text-indigo-400 mb-1">Quick Sort</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">Best general-purpose sort. Highly cache efficient. Use it for most random data arrays.</p>
+                        <div className="bg-primary-bg dark:bg-sidebar rounded-xl p-4 border border-border dark:border-border">
+                            <h4 className="font-semibold text-primary-accent dark:text-primary-accent mb-1">Quick Sort</h4>
+                            <p className="text-sm text-secondary-text dark:text-secondary-text">Best general-purpose sort. Highly cache efficient. Use it for most random data arrays.</p>
                         </div>
                     )}
 
                     {[algo1, algo2].includes('merge-sort') && (
-                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
-                            <h4 className="font-semibold text-indigo-600 dark:text-indigo-400 mb-1">Merge Sort</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">Guaranteed O(N log N) time and stable sorting. Use when stability is required or data is large/linked.</p>
+                        <div className="bg-primary-bg dark:bg-sidebar rounded-xl p-4 border border-border dark:border-border">
+                            <h4 className="font-semibold text-primary-accent dark:text-primary-accent mb-1">Merge Sort</h4>
+                            <p className="text-sm text-secondary-text dark:text-secondary-text">Guaranteed O(N log N) time and stable sorting. Use when stability is required or data is large/linked.</p>
                         </div>
                     )}
 
                     {[algo1, algo2].includes('insertion-sort') && (
-                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
-                            <h4 className="font-semibold text-indigo-600 dark:text-indigo-400 mb-1">Insertion Sort</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">Extremely fast for small datasets or <b>Nearly Sorted</b> data patterns.</p>
+                        <div className="bg-primary-bg dark:bg-sidebar rounded-xl p-4 border border-border dark:border-border">
+                            <h4 className="font-semibold text-primary-accent dark:text-primary-accent mb-1">Insertion Sort</h4>
+                            <p className="text-sm text-secondary-text dark:text-secondary-text">Extremely fast for small datasets or <b>Nearly Sorted</b> data patterns.</p>
                         </div>
                     )}
 
                     {([algo1, algo2].includes('bubble-sort') || [algo1, algo2].includes('selection-sort')) && (
-                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-100 dark:border-slate-700">
-                            <h4 className="font-semibold text-indigo-600 dark:text-indigo-400 mb-1">Bubble / Selection</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">Mostly for educational purposes. Inefficient O(N²) for large arrays, avoid in real projects.</p>
+                        <div className="bg-primary-bg dark:bg-sidebar rounded-xl p-4 border border-border dark:border-border">
+                            <h4 className="font-semibold text-primary-accent dark:text-primary-accent mb-1">Bubble / Selection</h4>
+                            <p className="text-sm text-secondary-text dark:text-secondary-text">Mostly for educational purposes. Inefficient O(N²) for large arrays, avoid in real projects.</p>
                         </div>
                     )}
 

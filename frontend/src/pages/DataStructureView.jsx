@@ -240,7 +240,7 @@ const DataStructureView = () => {
             return (
                 <div className="flex items-center overflow-x-auto p-8 py-20 min-h-[300px] w-full hide-scrollbar">
                     <div className="flex items-center space-x-2 w-full max-w-4xl mx-auto">
-                        <span className="font-mono text-sm font-bold text-slate-500 mr-4">HEAD</span>
+                        <span className="font-mono text-sm font-bold text-secondary-text mr-4">HEAD</span>
                         {elements.map((val, idx) => {
                             let label = "";
                             if (id.includes('reverse') && activeIdx !== -1) {
@@ -252,23 +252,23 @@ const DataStructureView = () => {
                             return (
                                 <React.Fragment key={idx}>
                                     {/* The Node */}
-                                    <div className={`relative flex flex-col items-center justify-center min-w-[70px] min-h-[70px] border-2 rounded-xl text-lg font-bold transition-all duration-300 ${activeIdx === idx ? 'bg-indigo-500 border-indigo-600 text-white scale-110 shadow-lg' : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-white border-slate-300 dark:border-slate-600'}`}>
+                                    <div className={`relative flex flex-col items-center justify-center min-w-[70px] min-h-[70px] border-2 rounded-xl text-lg font-bold transition-all duration-300 ${activeIdx === idx ? 'bg-primary-accent border-primary-accent text-secondary-bg scale-110 shadow-md' : 'bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg border-border dark:border-border'}`}>
                                         {label && (
-                                            <div className="absolute -top-10 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 text-[10px] px-2 py-0.5 rounded font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform -translate-y-1">
+                                            <div className="absolute -top-10 bg-primary-accent text-primary-accent dark:bg-primary-accent dark:text-primary-accent text-[10px] px-2 py-0.5 rounded font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform -translate-y-1">
                                                 {label}
                                             </div>
                                         )}
                                         {val}
-                                        <span className="absolute -bottom-6 text-xs text-slate-400 font-mono">Node {idx}</span>
+                                        <span className="absolute -bottom-6 text-xs text-secondary-text font-mono">Node {idx}</span>
                                     </div>
 
                                     {/* The Pointing Arrow between nodes */}
                                     {idx < elements.length - 1 && (
-                                        <div className="flex-grow min-w-[30px] flex flex-col justify-center items-center relative text-slate-400">
+                                        <div className="flex-grow min-w-[30px] flex flex-col justify-center items-center relative text-secondary-text">
                                             {id.includes('doubly') ? (
                                                 <div className="flex flex-col gap-1 w-full">
                                                     {/* Top arrow right */}
-                                                    <div className={`flex w-full items-center transition-all ${pointerStates[idx] === 'backward' ? 'opacity-20' : 'opacity-100 text-indigo-500'}`}>
+                                                    <div className={`flex w-full items-center transition-all ${pointerStates[idx] === 'backward' ? 'opacity-20' : 'opacity-100 text-primary-accent'}`}>
                                                         <div className="h-0.5 bg-current w-full"></div>
                                                         <ArrowRight size={16} className="-ml-1" />
                                                     </div>
@@ -287,8 +287,8 @@ const DataStructureView = () => {
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <div className="h-0.5 bg-indigo-500 w-full transition-all"></div>
-                                                            <ArrowRight size={20} className="text-indigo-500 -ml-1 transition-all" />
+                                                            <div className="h-0.5 bg-primary-accent w-full transition-all"></div>
+                                                            <ArrowRight size={20} className="text-primary-accent -ml-1 transition-all" />
                                                         </>
                                                     )}
                                                 </div>
@@ -298,7 +298,7 @@ const DataStructureView = () => {
                                 </React.Fragment>
                             );
                         })}
-                        <span className="font-mono text-sm font-bold text-slate-500 ml-4">NULL</span>
+                        <span className="font-mono text-sm font-bold text-secondary-text ml-4">NULL</span>
                     </div>
                 </div>
             );
@@ -307,14 +307,14 @@ const DataStructureView = () => {
         if (id === 'stack') {
             return (
                 <div className="flex items-end justify-center h-full p-8 py-20 min-h-[300px] w-full">
-                    <div className="flex flex-col-reverse w-48 border-x-4 border-b-4 border-slate-400 dark:border-slate-600 rounded-b-xl overflow-visible p-2 gap-2 bg-slate-50/50 dark:bg-slate-800/20">
+                    <div className="flex flex-col-reverse w-48 border-x-4 border-b-4 border-border dark:border-border rounded-b-xl overflow-visible p-2 gap-2 bg-primary-bg/50 dark:bg-sidebar/20">
                         {elements.map((val, idx) => (
-                            <div key={idx} className={`w-full py-4 text-center rounded-lg font-bold text-lg border transition-all ${activeIdx === idx ? 'bg-indigo-500 border-indigo-600 text-white animate-bounce shadow-lg' : 'bg-white dark:bg-slate-700 text-slate-800 dark:text-white border-slate-300 dark:border-slate-500'}`}>
+                            <div key={idx} className={`w-full py-4 text-center rounded-xl font-bold text-lg border transition-all ${activeIdx === idx ? 'bg-primary-accent border-primary-accent text-secondary-bg animate-bounce shadow-md' : 'bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg border-border dark:border-border'}`}>
                                 {val}
                             </div>
                         ))}
                     </div>
-                    <div className="h-64 flex flex-col justify-end ml-4 text-slate-400 font-mono text-sm font-bold">
+                    <div className="h-64 flex flex-col justify-end ml-4 text-secondary-text font-mono text-sm font-bold">
                         <span className="mb-2 uppercase tracking-widest text-[10px]">Top</span>
                         <span className="mt-auto uppercase tracking-widest text-[10px]">Bottom</span>
                     </div>
@@ -325,20 +325,20 @@ const DataStructureView = () => {
         if (id === 'queue') {
             return (
                 <div className="flex items-center justify-center overflow-x-auto p-8 py-20 min-h-[300px] w-full">
-                    <div className="flex items-center text-slate-400 font-mono text-sm font-bold mr-4 flex-col shrink-0">
+                    <div className="flex items-center text-secondary-text font-mono text-sm font-bold mr-4 flex-col shrink-0">
                         <span>Dequeue (Front)</span>
                         <ArrowLeft size={20} className="mt-1" />
                     </div>
 
-                    <div className="flex border-y-4 border-slate-400 dark:border-slate-600 h-28 items-center p-2 gap-2 bg-slate-50/50 dark:bg-slate-800/20 min-w-[200px]">
+                    <div className="flex border-y-4 border-border dark:border-border h-28 items-center p-2 gap-2 bg-primary-bg/50 dark:bg-sidebar/20 min-w-[200px]">
                         {elements.map((val, idx) => (
-                            <div key={idx} className={`w-20 h-20 shrink-0 flex items-center justify-center rounded-lg font-bold text-lg border transition-all ${activeIdx === idx ? 'bg-indigo-500 border-indigo-600 text-white shadow-lg scale-110' : 'bg-white dark:bg-slate-700 text-slate-800 dark:text-white border-slate-300 dark:border-slate-500'}`}>
+                            <div key={idx} className={`w-20 h-20 shrink-0 flex items-center justify-center rounded-xl font-bold text-lg border transition-all ${activeIdx === idx ? 'bg-primary-accent border-primary-accent text-secondary-bg shadow-md scale-110' : 'bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg border-border dark:border-border'}`}>
                                 {val}
                             </div>
                         ))}
                     </div>
 
-                    <div className="flex items-center text-slate-400 font-mono text-sm font-bold ml-4 flex-col shrink-0">
+                    <div className="flex items-center text-secondary-text font-mono text-sm font-bold ml-4 flex-col shrink-0">
                         <span>Enqueue (Rear)</span>
                         <ArrowLeft size={20} className="mt-1" />
                     </div>
@@ -354,19 +354,19 @@ const DataStructureView = () => {
             {/* Header duplicated logic from AlgoView for consistency */}
             <div className="flex justify-between items-center mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center">
-                        <Layers className="mr-3 text-indigo-500" /> {dsData.name}
+                    <h1 className="text-2xl font-bold text-primary-text dark:text-secondary-bg flex items-center">
+                        <Layers className="mr-3 text-primary-accent" /> {dsData.name}
                     </h1>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 capitalize">{dsData.category}</p>
+                    <p className="text-sm text-secondary-text dark:text-secondary-text capitalize">{dsData.category}</p>
                 </div>
                 <div className="flex gap-4">
-                    <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                        <span className="block text-xs text-slate-500">Time</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{dsData.timeComplexity}</span>
+                    <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                        <span className="block text-xs text-secondary-text">Time</span>
+                        <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{dsData.timeComplexity}</span>
                     </div>
-                    <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                        <span className="block text-xs text-slate-500">Space</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{dsData.spaceComplexity}</span>
+                    <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                        <span className="block text-xs text-secondary-text">Space</span>
+                        <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{dsData.spaceComplexity}</span>
                     </div>
                 </div>
             </div>
@@ -375,12 +375,12 @@ const DataStructureView = () => {
                 {/* Description Panel */}
                 <div className="lg:col-span-1 flex flex-col gap-4">
 
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex-grow min-h-[200px]">
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Description & Behavior</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    <div className="bg-secondary-bg dark:bg-sidebar p-5 rounded-xl border border-border dark:border-border flex-grow min-h-[200px]">
+                        <h3 className="font-semibold text-primary-text dark:text-secondary-bg mb-2">Description & Behavior</h3>
+                        <p className="text-sm text-secondary-text dark:text-secondary-text leading-relaxed mb-4">
                             {dsData.description}
                         </p>
-                        <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-2 list-disc list-inside">
+                        <ul className="text-sm text-secondary-text dark:text-secondary-text space-y-2 list-disc list-inside">
                             {id.includes('reverse') && <li>Simulates in-place memory pointer reassignment</li>}
                             {id === 'stack' && <li>Simulates typical call-stack operations</li>}
                             {id === 'queue' && <li>Simulates typical event-loop buffers</li>}
@@ -390,9 +390,9 @@ const DataStructureView = () => {
 
                 {/* Visualization Panel */}
                 <div className="lg:col-span-2 flex flex-col">
-                    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-col pt-10">
+                    <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-md border border-border dark:border-border flex-grow relative overflow-hidden flex flex-col pt-10">
                         {currentOperation && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-indigo-100 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-sm">
+                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-primary-accent text-primary-accent dark:bg-primary-accent/90 dark:text-primary-accent px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-sm">
                                 {currentOperation}
                             </div>
                         )}

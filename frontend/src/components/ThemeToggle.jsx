@@ -25,7 +25,7 @@ const ThemeToggle = () => {
     return (
         <button
             onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all shadow-sm flex items-center justify-center grayscale hover:grayscale-0"
+            className="p-2 rounded-xl bg-primary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text hover:bg-slate-200 dark:hover:bg-slate-600 transition-all shadow-sm flex items-center justify-center grayscale hover:grayscale-0"
             title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
         >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}

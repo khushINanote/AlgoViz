@@ -406,8 +406,8 @@ const AlgorithmView = () => {
 
     if (!algoData) return (
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-200">Algorithm Not Found or Not Implemented Yet</h2>
-            <button onClick={() => navigate('/algorithms')} className="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-lg">Back to Catalog</button>
+            <h2 className="text-2xl font-bold text-primary-text dark:text-primary-text">Algorithm Not Found or Not Implemented Yet</h2>
+            <button onClick={() => navigate('/algorithms')} className="mt-4 px-6 py-2 bg-primary-accent text-secondary-bg rounded-xl">Back to Catalog</button>
         </div>
     );
 
@@ -416,13 +416,13 @@ const AlgorithmView = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{algoData.name}</h1>
+                    <h1 className="text-2xl font-bold text-primary-text dark:text-secondary-bg">{algoData.name}</h1>
                     <div className="flex items-center gap-2 mt-1">
-                        <p className="text-sm text-slate-500 dark:text-slate-400 capitalize">{algoData.category}</p>
+                        <p className="text-sm text-secondary-text dark:text-secondary-text capitalize">{algoData.category}</p>
                         {algoData.category === 'sorting' && (
                             <Link
                                 to="/compare"
-                                className="inline-flex items-center text-[10px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+                                className="inline-flex items-center text-[10px] font-bold text-primary-accent dark:text-primary-accent hover:underline"
                             >
                                 <RefreshCcw size={10} className="mr-1" /> Compare with others
                             </Link>
@@ -431,19 +431,19 @@ const AlgorithmView = () => {
                 </div>
                 <div className="flex items-center gap-4">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${algoData.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
-                        algoData.difficulty === 'Intermediate' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' :
+                        algoData.difficulty === 'Intermediate' ? 'bg-amber-100 text-warning dark:bg-amber-900/30 dark:text-warning' :
                             'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400'
                         }`}>
                         {algoData.difficulty}
                     </span>
                     <div className="flex gap-4">
-                        <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                            <span className="block text-xs text-slate-500">Time</span>
-                            <span className="font-mono font-bold text-slate-900 dark:text-white">{algoData.timeComplexity}</span>
+                        <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                            <span className="block text-xs text-secondary-text">Time</span>
+                            <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{algoData.timeComplexity}</span>
                         </div>
-                        <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                            <span className="block text-xs text-slate-500">Space</span>
-                            <span className="font-mono font-bold text-slate-900 dark:text-white">{algoData.spaceComplexity}</span>
+                        <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                            <span className="block text-xs text-secondary-text">Space</span>
+                            <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{algoData.spaceComplexity}</span>
                         </div>
                     </div>
                 </div>
@@ -454,40 +454,40 @@ const AlgorithmView = () => {
                 <div className="lg:col-span-1 flex flex-col gap-4 order-2 lg:order-1">
                     {/* Live Stats Row - Responsive Wrap */}
                     <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
-                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Comparisons</span>
-                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.comparisons}</span>
+                        <div className="bg-primary-bg dark:bg-sidebar border border-border dark:border-border rounded-xl px-2 py-2 flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-secondary-text uppercase tracking-widest leading-none mb-1 text-[9px]">Comparisons</span>
+                            <span className="font-mono font-bold text-sm text-primary-text dark:text-primary-text">{currentState.stats.comparisons}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
-                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Swaps</span>
-                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.swaps}</span>
+                        <div className="bg-primary-bg dark:bg-sidebar border border-border dark:border-border rounded-xl px-2 py-2 flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-secondary-text uppercase tracking-widest leading-none mb-1 text-[9px]">Swaps</span>
+                            <span className="font-mono font-bold text-sm text-primary-text dark:text-primary-text">{currentState.stats.swaps}</span>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm">
-                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Memory</span>
-                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200 truncate">
+                        <div className="bg-primary-bg dark:bg-sidebar border border-border dark:border-border rounded-xl px-2 py-2 flex flex-col items-center justify-center shadow-sm">
+                            <span className="text-secondary-text uppercase tracking-widest leading-none mb-1 text-[9px]">Memory</span>
+                            <span className="font-mono font-bold text-sm text-primary-text dark:text-primary-text truncate">
                                 {algoData.spaceComplexity === 'O(1)' ? 'Fixed' : `${arraySize * 4}B`}
                             </span>
                         </div>
-                        <div className={`bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-2 flex flex-col items-center justify-center shadow-sm transition-opacity ${currentState.stats.depth > 0 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-slate-500 uppercase tracking-widest leading-none mb-1 text-[9px]">Depth</span>
-                            <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">{currentState.stats.depth}</span>
+                        <div className={`bg-primary-bg dark:bg-sidebar border border-border dark:border-border rounded-xl px-2 py-2 flex flex-col items-center justify-center shadow-sm transition-opacity ${currentState.stats.depth > 0 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-secondary-text uppercase tracking-widest leading-none mb-1 text-[9px]">Depth</span>
+                            <span className="font-mono font-bold text-sm text-primary-text dark:text-primary-text">{currentState.stats.depth}</span>
                         </div>
                     </div>
 
-                    <div className="bg-slate-900 rounded-xl overflow-hidden shadow-md flex-grow border border-slate-700 flex flex-col">
-                        <div className="bg-slate-800 px-4 py-2 flex items-center border-b border-slate-700">
+                    <div className="bg-sidebar rounded-xl overflow-hidden shadow-md flex-grow border border-border flex flex-col">
+                        <div className="bg-sidebar px-4 py-2 flex items-center border-b border-border">
                             <div className="flex gap-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
-                            <span className="ml-4 text-xs font-mono text-slate-400">algorithm.js</span>
+                            <span className="ml-4 text-xs font-mono text-secondary-text">algorithm.js</span>
                         </div>
-                        <pre className="p-4 overflow-x-auto text-[13px] font-mono text-slate-300 flex-grow max-h-[350px] overflow-y-auto thin-scrollbar">
+                        <pre className="p-4 overflow-x-auto text-[13px] font-mono text-secondary-text flex-grow max-h-[350px] overflow-y-auto thin-scrollbar">
                             {algoData.code.split('\n').map((line, idx) => (
                                 <div
                                     key={idx}
-                                    className={`px-2 py-0.5 rounded transition-colors ${currentState.activeCodeLine === idx ? 'bg-indigo-600/30 border-l-2 border-indigo-400 text-white' : 'border-l-2 border-transparent hover:bg-slate-800/50'}`}
+                                    className={`px-2 py-0.5 rounded transition-colors ${currentState.activeCodeLine === idx ? 'bg-primary-accent/30 border-l-2 border-primary-accent text-secondary-bg' : 'border-l-2 border-transparent hover:bg-sidebar/50'}`}
                                 >
                                     <span className="opacity-30 mr-4 text-[10px] inline-block w-4 text-right select-none">{idx + 1}</span>
                                     {line}
@@ -495,20 +495,20 @@ const AlgorithmView = () => {
                             ))}
                         </pre>
                         {currentState.stats.depth > 0 && (
-                            <div className="p-3 border-t border-slate-700 bg-slate-800/50 max-h-[220px] overflow-y-auto thin-scrollbar">
+                            <div className="p-3 border-t border-border bg-sidebar/50 max-h-[220px] overflow-y-auto thin-scrollbar">
                                 <RecursionTree history={executionHistory} currentStep={currentStep} />
                             </div>
                         )}
                     </div>
 
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex-none overflow-y-auto">
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Description</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    <div className="bg-secondary-bg dark:bg-sidebar p-5 rounded-xl border border-border dark:border-border flex-none overflow-y-auto">
+                        <h3 className="font-semibold text-primary-text dark:text-secondary-bg mb-2">Description</h3>
+                        <p className="text-sm text-secondary-text dark:text-secondary-text leading-relaxed mb-4">
                             {algoData.description}
                         </p>
                         {algoData.practiceProblems && (
-                            <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Practice Problems</h4>
+                            <div className="pt-4 border-t border-border dark:border-border">
+                                <h4 className="text-xs font-bold text-secondary-text uppercase tracking-widest mb-3">Practice Problems</h4>
                                 <div className="flex flex-col gap-2">
                                     {algoData.practiceProblems.map((prob, i) => (
                                         <a
@@ -516,7 +516,7 @@ const AlgorithmView = () => {
                                             href={prob.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline flex items-center"
+                                            className="text-sm text-primary-accent dark:text-primary-accent hover:underline flex items-center"
                                         >
                                             <CheckCircle2 size={14} className="mr-2 opacity-50" />
                                             {prob.name}
@@ -530,7 +530,7 @@ const AlgorithmView = () => {
 
                 {/* Right/Top Column: Visualization Panel */}
                 <div className="lg:col-span-2 flex flex-col order-1 lg:order-2">
-                <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-col p-6 min-h-[400px]">
+                <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-md border border-border dark:border-border flex-grow relative overflow-hidden flex flex-col p-6 min-h-[400px]">
                     {showCompletionMessage && (
                         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-300 px-4 py-2 rounded-full font-medium flex items-center text-sm shadow-md transition-all">
                             <CheckCircle2 size={16} className="mr-2" /> Sorting Complete! Progress saved.
@@ -539,7 +539,7 @@ const AlgorithmView = () => {
 
                     {/* Step Description Toast */}
                     {currentState.stepDescription && currentState.stepDescription !== 'Loading...' && !showCompletionMessage && (
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-indigo-100/90 text-indigo-800 dark:bg-indigo-900/90 dark:text-indigo-200 px-4 sm:px-6 py-1.5 rounded-full font-bold shadow-sm border border-indigo-200 dark:border-indigo-700 whitespace-nowrap transform transition-all text-[11px] sm:text-sm backdrop-blur-sm max-w-[90%] truncate">
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-primary-accent/90 text-primary-accent dark:bg-primary-accent/90 dark:text-primary-accent px-4 sm:px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-[11px] sm:text-sm backdrop-blur-sm max-w-[90%] truncate">
                             {currentState.stepDescription}
                         </div>
                     )}
@@ -549,14 +549,14 @@ const AlgorithmView = () => {
                             disabled={isPlaying}
                             value={arrayPattern}
                             onChange={(e) => generateNewArray(arraySize, e.target.value)}
-                            className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 outline-none"
+                            className="text-xs px-2 py-1 rounded bg-primary-bg dark:bg-sidebar text-slate-700 dark:text-secondary-text border border-border dark:border-border outline-none"
                         >
                             {arrayPatterns.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                         <button
                             onClick={() => generateNewArray(arraySize)}
                             disabled={isPlaying}
-                            className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition disabled:opacity-50 border border-slate-300 dark:border-slate-600"
+                            className="p-1.5 bg-primary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition disabled:opacity-50 border border-border dark:border-border"
                             title="Randomize Data"
                         >
                             <RefreshCcw size={14} />
@@ -570,8 +570,8 @@ const AlgorithmView = () => {
                                 className={`flex-1 min-w-[2px] sm:min-w-[4px] rounded-t transition-colors duration-100 ${currentState.colors[idx] === 'comparing' ? 'bg-yellow-400' :
                                     currentState.colors[idx] === 'swapping' ? 'bg-rose-500' :
                                         currentState.colors[idx] === 'sorted' ? 'bg-emerald-400' :
-                                            currentState.colors[idx] === 'current' ? 'bg-indigo-500' :
-                                                'bg-indigo-300 dark:bg-indigo-600'
+                                            currentState.colors[idx] === 'current' ? 'bg-primary-accent' :
+                                                'bg-primary-accent dark:bg-primary-accent'
                                     }`}
                                 style={{ height: `${(val / 100) * 90}%` }}
                             />
@@ -579,12 +579,12 @@ const AlgorithmView = () => {
                     </div>
 
                     {/* Execution Timeline */}
-                    <div className="mt-auto border-t border-slate-100 dark:border-slate-800 pt-4 px-2 overflow-hidden">
+                    <div className="mt-auto border-t border-border dark:border-border pt-4 px-2 overflow-hidden">
                         <div className="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar">
                             {executionHistory.slice(Math.max(0, currentStep - 5), currentStep + 1).map((step, i) => (
                                 <div
                                     key={i}
-                                    className={`whitespace-nowrap px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tight transition-all ${step === currentState ? 'bg-indigo-600 text-white scale-110 shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
+                                    className={`whitespace-nowrap px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tight transition-all ${step === currentState ? 'bg-primary-accent text-secondary-bg scale-110 shadow-sm' : 'bg-primary-bg dark:bg-sidebar text-secondary-text'
                                         }`}
                                 >
                                     {step.stepDescription.includes('Comparing') ? 'Compare' :

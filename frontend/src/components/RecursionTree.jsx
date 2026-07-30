@@ -20,8 +20,8 @@ const RecursionTree = ({ history, currentStep }) => {
     return (
         <div className="space-y-3">
             <div className="flex items-center justify-between mb-2">
-                <h4 className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Recursion Stack</h4>
-                <span className="text-[9px] font-mono text-indigo-400 font-bold px-1.5 py-0.5 bg-indigo-900/30 rounded-full">
+                <h4 className="text-[9px] font-bold text-secondary-text uppercase tracking-widest">Recursion Stack</h4>
+                <span className="text-[9px] font-mono text-primary-accent font-bold px-1.5 py-0.5 bg-primary-accent/30 rounded-full">
                     Depth: {activeCalls.length - 1}
                 </span>
             </div>
@@ -33,14 +33,14 @@ const RecursionTree = ({ history, currentStep }) => {
 
                     return (
                         <div key={call.id} className="relative">
-                            <div className="flex justify-between items-center mb-0.5 text-[8px] font-mono text-slate-500">
+                            <div className="flex justify-between items-center mb-0.5 text-[8px] font-mono text-secondary-text">
                                 <span>L{call.depth}</span>
                                 <span>[{call.range[0]}, {call.range[1]}]</span>
                             </div>
-                            <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                            <div className="h-1.5 bg-sidebar rounded-full overflow-hidden border border-border">
                                 <div
                                     className={`h-full transition-all duration-300 ${i === activeCalls.length - 1
-                                        ? 'bg-indigo-500 shadow-[0_0_6px_rgba(99,102,241,0.4)]'
+                                        ? 'bg-primary-accent shadow-[0_0_6px_rgba(99,102,241,0.4)]'
                                         : 'bg-slate-600 opacity-40'
                                         }`}
                                     style={{

@@ -253,19 +253,19 @@ const GraphView = () => {
             {/* Header duplicated logic from AlgoView for consistency */}
             <div className="flex justify-between items-center mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center">
-                        <Network className="mr-3 text-indigo-500" /> {gData.name}
+                    <h1 className="text-2xl font-bold text-primary-text dark:text-secondary-bg flex items-center">
+                        <Network className="mr-3 text-primary-accent" /> {gData.name}
                     </h1>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 capitalize">{gData.category}</p>
+                    <p className="text-sm text-secondary-text dark:text-secondary-text capitalize">{gData.category}</p>
                 </div>
                 <div className="flex gap-4">
-                    <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                        <span className="block text-xs text-slate-500">Time</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{gData.timeComplexity}</span>
+                    <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                        <span className="block text-xs text-secondary-text">Time</span>
+                        <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{gData.timeComplexity}</span>
                     </div>
-                    <div className="text-center px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
-                        <span className="block text-xs text-slate-500">Space</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{gData.spaceComplexity}</span>
+                    <div className="text-center px-4 py-1.5 bg-primary-bg dark:bg-sidebar rounded-xl">
+                        <span className="block text-xs text-secondary-text">Space</span>
+                        <span className="font-mono font-bold text-primary-text dark:text-secondary-bg">{gData.spaceComplexity}</span>
                     </div>
                 </div>
             </div>
@@ -273,46 +273,46 @@ const GraphView = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
                 {/* Code Panel */}
                 <div className="lg:col-span-1 flex flex-col gap-4">
-                    <div className="bg-slate-900 rounded-xl overflow-hidden shadow-md flex-grow border border-slate-700">
-                        <div className="bg-slate-800 px-4 py-2 flex items-center border-b border-slate-700">
-                            <span className="text-xs font-mono text-slate-400">algorithm.js</span>
+                    <div className="bg-sidebar rounded-xl overflow-hidden shadow-md flex-grow border border-border">
+                        <div className="bg-sidebar px-4 py-2 flex items-center border-b border-border">
+                            <span className="text-xs font-mono text-secondary-text">algorithm.js</span>
                         </div>
-                        <pre className="p-4 overflow-x-auto text-sm font-mono text-slate-300 min-h-[250px]">
+                        <pre className="p-4 overflow-x-auto text-sm font-mono text-secondary-text min-h-[250px]">
                             {gData.code}
                         </pre>
                     </div>
 
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex-none min-h-[150px]">
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Description</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <div className="bg-secondary-bg dark:bg-sidebar p-5 rounded-xl border border-border dark:border-border flex-none min-h-[150px]">
+                        <h3 className="font-semibold text-primary-text dark:text-secondary-bg mb-2">Description</h3>
+                        <p className="text-sm text-secondary-text dark:text-secondary-text leading-relaxed">
                             {gData.description}
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                            <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Unvisited</span>
-                            <span className="px-2 py-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-700 rounded">Queued/Visiting</span>
-                            <span className="px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-400 border border-indigo-300 dark:border-indigo-600 rounded">Current Node</span>
+                            <span className="px-2 py-1 bg-primary-bg dark:bg-sidebar rounded text-secondary-text dark:text-secondary-text border border-border dark:border-border">Unvisited</span>
+                            <span className="px-2 py-1 bg-yellow-100 text-warning dark:bg-yellow-900/30 dark:text-warning border border-yellow-200 dark:border-yellow-700 rounded">Queued/Visiting</span>
+                            <span className="px-2 py-1 bg-primary-accent text-primary-accent dark:bg-primary-accent/50 dark:text-primary-accent border border-primary-accent dark:border-primary-accent rounded">Current Node</span>
                             <span className="px-2 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-600 rounded">Fully Visited</span>
                         </div>
 
                         {/* Custom Graph Builder */}
-                        <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
-                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Custom Graph Builder</h4>
+                        <div className="mt-4 p-4 bg-primary-bg dark:bg-sidebar/50 rounded-xl border border-border dark:border-border">
+                            <h4 className="text-xs font-bold text-secondary-text uppercase tracking-widest mb-3">Custom Graph Builder</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-[10px] text-slate-500 uppercase">Add Node (ID)</label>
+                                    <label className="text-[10px] text-secondary-text uppercase">Add Node (ID)</label>
                                     <input
                                         type="text"
                                         placeholder="e.g. Z"
-                                        className="w-full mt-1 px-2 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded outline-none text-slate-700 dark:text-slate-200"
+                                        className="w-full mt-1 px-2 py-1 text-xs bg-secondary-bg dark:bg-sidebar border border-border dark:border-border rounded outline-none text-slate-700 dark:text-primary-text"
                                         onKeyDown={(e) => { if (e.key === 'Enter') { addNode(e.target.value.toUpperCase()); e.target.value = ''; } }}
                                     />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="text-[10px] text-slate-500 uppercase">Add Edge (S, T, W)</label>
+                                    <label className="text-[10px] text-secondary-text uppercase">Add Edge (S, T, W)</label>
                                     <div className="flex gap-1">
-                                        <input id="edge-s" type="text" placeholder="S" className="w-8 px-1 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-center text-slate-700 dark:text-slate-200" />
-                                        <input id="edge-t" type="text" placeholder="T" className="w-8 px-1 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-center text-slate-700 dark:text-slate-200" />
-                                        <input id="edge-w" type="text" placeholder="W" className="w-8 px-1 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-center text-slate-700 dark:text-slate-200" />
+                                        <input id="edge-s" type="text" placeholder="S" className="w-8 px-1 py-1 text-xs bg-secondary-bg dark:bg-sidebar border border-border dark:border-border rounded text-center text-slate-700 dark:text-primary-text" />
+                                        <input id="edge-t" type="text" placeholder="T" className="w-8 px-1 py-1 text-xs bg-secondary-bg dark:bg-sidebar border border-border dark:border-border rounded text-center text-slate-700 dark:text-primary-text" />
+                                        <input id="edge-w" type="text" placeholder="W" className="w-8 px-1 py-1 text-xs bg-secondary-bg dark:bg-sidebar border border-border dark:border-border rounded text-center text-slate-700 dark:text-primary-text" />
                                         <button
                                             onClick={() => {
                                                 const s = document.getElementById('edge-s').value.toUpperCase();
@@ -320,7 +320,7 @@ const GraphView = () => {
                                                 const w = document.getElementById('edge-w').value;
                                                 addEdge(s, t, w);
                                             }}
-                                            className="px-2 py-1 bg-indigo-600 text-white text-[10px] rounded hover:bg-indigo-700 transition"
+                                            className="px-2 py-1 bg-primary-accent text-secondary-bg text-[10px] rounded hover:bg-primary-accent transition"
                                         >
                                             Add
                                         </button>
@@ -333,10 +333,10 @@ const GraphView = () => {
 
                 {/* Visualization Panel */}
                 <div className="lg:col-span-2 flex flex-col">
-                    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 flex-grow relative overflow-hidden flex flex-row min-h-[400px]">
+                    <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-md border border-border dark:border-border flex-grow relative overflow-hidden flex flex-row min-h-[400px]">
 
                         {/* Graph Canvas */}
-                        <div className="flex-grow relative border-r border-slate-200 dark:border-slate-700">
+                        <div className="flex-grow relative border-r border-border dark:border-border">
                             {showCompletionMessage && (
                                 <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-300 px-4 py-2 rounded-full font-medium flex items-center text-sm shadow-md transition-all">
                                     <CheckCircle2 size={16} className="mr-2" /> Traversal Complete!
@@ -379,9 +379,9 @@ const GraphView = () => {
                             <div className="absolute inset-4 z-10">
                                 {nodes.map(n => {
                                     const state = nodeStates[n.id] || 'default';
-                                    let bgClass = "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-600";
-                                    if (state === 'queued' || state === 'visiting') bgClass = "bg-yellow-100 text-yellow-800 border-yellow-400 dark:bg-yellow-900/80 dark:text-yellow-200 dark:border-yellow-600 shadow-[0_0_15px_rgba(250,204,21,0.4)]";
-                                    if (state === 'current') bgClass = "bg-indigo-500 text-white border-indigo-600 shadow-[0_0_20px_rgba(99,102,241,0.6)] scale-110";
+                                    let bgClass = "bg-secondary-bg dark:bg-sidebar text-slate-700 dark:text-secondary-text border-border dark:border-border";
+                                    if (state === 'queued' || state === 'visiting') bgClass = "bg-yellow-100 text-warning border-yellow-400 dark:bg-yellow-900/80 dark:text-warning dark:border-yellow-600 shadow-[0_0_15px_rgba(250,204,21,0.4)]";
+                                    if (state === 'current') bgClass = "bg-primary-accent text-secondary-bg border-primary-accent shadow-[0_0_20px_rgba(99,102,241,0.6)] scale-110";
                                     if (state === 'visited') bgClass = "bg-emerald-100 text-emerald-800 border-emerald-400 dark:bg-emerald-900/80 dark:text-emerald-200 dark:border-emerald-600";
 
                                     return (
@@ -398,18 +398,18 @@ const GraphView = () => {
                         </div>
 
                         {/* DS Sidebar */}
-                        <div className="w-24 bg-slate-50 dark:bg-slate-800/50 flex flex-col border-l border-slate-200 dark:border-slate-700 shrink-0">
-                            <div className="p-2 border-b border-slate-200 dark:border-slate-700 text-[10px] font-bold text-center text-slate-500 uppercase tracking-widest bg-slate-100 dark:bg-slate-800">
+                        <div className="w-24 bg-primary-bg dark:bg-sidebar/50 flex flex-col border-l border-border dark:border-border shrink-0">
+                            <div className="p-2 border-b border-border dark:border-border text-[10px] font-bold text-center text-secondary-text uppercase tracking-widest bg-primary-bg dark:bg-sidebar">
                                 {id === 'bfs' ? 'Queue (Front)' : id === 'dijkstra' ? 'PQ (Min)' : 'Stack (Top)'}
                             </div>
                             <div className="flex-grow p-2 overflow-y-auto flex flex-col gap-2 items-center">
                                 {dsElements.map((el, i) => (
-                                    <div key={i} className="w-16 h-12 bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700 rounded-lg flex items-center justify-center font-bold shadow-sm shrink-0 text-[10px]">
+                                    <div key={i} className="w-16 h-12 bg-primary-accent text-primary-accent dark:bg-primary-accent/60 dark:text-primary-accent border border-primary-accent dark:border-primary-accent rounded-xl flex items-center justify-center font-bold shadow-sm shrink-0 text-[10px]">
                                         {el}
                                     </div>
                                 ))}
                             </div>
-                            <div className="p-2 border-t border-slate-200 dark:border-slate-700 text-[10px] font-bold text-center text-slate-400 uppercase tracking-widest bg-slate-100 dark:bg-slate-800">
+                            <div className="p-2 border-t border-border dark:border-border text-[10px] font-bold text-center text-secondary-text uppercase tracking-widest bg-primary-bg dark:bg-sidebar">
                                 {id === 'bfs' ? 'Queue (Rear)' : id === 'dijkstra' ? 'PQ (End)' : 'Stack (Bottom)'}
                             </div>
                         </div>
