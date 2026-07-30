@@ -290,7 +290,7 @@ const GraphView = () => {
                         <div className="mt-4 flex flex-wrap gap-2 text-xs">
                             <span className="px-2 py-1 bg-primary-bg dark:bg-sidebar rounded text-secondary-text dark:text-secondary-text border border-border dark:border-border">Unvisited</span>
                             <span className="px-2 py-1 bg-yellow-100 text-warning dark:bg-yellow-900/30 dark:text-warning border border-yellow-200 dark:border-yellow-700 rounded">Queued/Visiting</span>
-                            <span className="px-2 py-1 bg-primary-accent text-primary-accent dark:bg-primary-accent/50 dark:text-primary-accent border border-primary-accent dark:border-primary-accent rounded">Current Node</span>
+                            <span className="px-2 py-1 bg-primary-accent text-white dark:bg-primary-accent/50 dark:text-white border border-primary-accent dark:border-primary-accent rounded">Current Node</span>
                             <span className="px-2 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-600 rounded">Fully Visited</span>
                         </div>
 
@@ -404,7 +404,7 @@ const GraphView = () => {
                             </div>
                             <div className="flex-grow p-2 overflow-y-auto flex flex-col gap-2 items-center">
                                 {dsElements.map((el, i) => (
-                                    <div key={i} className="w-16 h-12 bg-primary-accent text-primary-accent dark:bg-primary-accent/60 dark:text-primary-accent border border-primary-accent dark:border-primary-accent rounded-xl flex items-center justify-center font-bold shadow-sm shrink-0 text-[10px]">
+                                    <div key={i} className="w-16 h-12 bg-primary-accent text-white dark:bg-primary-accent/60 dark:text-white border border-primary-accent dark:border-primary-accent rounded-xl flex items-center justify-center font-bold shadow-sm shrink-0 text-[10px]">
                                         {el}
                                     </div>
                                 ))}

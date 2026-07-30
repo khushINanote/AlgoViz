@@ -43,7 +43,7 @@ const Categories = () => {
                     <h1 className="text-3xl font-bold text-primary-text dark:text-secondary-bg">Algorithm Library</h1>
                     <p className="text-secondary-text dark:text-secondary-text mt-2 flex items-center gap-4">
                         Explore and visualize different algorithms and data structures.
-                        <Link to="/compare" className="inline-flex items-center px-3 py-1 bg-primary-accent text-primary-accent dark:bg-primary-accent/40 dark:text-primary-accent text-xs font-bold rounded-full border border-primary-accent dark:border-primary-accent hover:bg-primary-accent transition-colors">
+                        <Link to="/compare" className="inline-flex items-center px-3 py-1 bg-primary-accent text-white dark:bg-primary-accent/40 dark:text-white text-xs font-bold rounded-full border border-primary-accent dark:border-primary-accent hover:opacity-90 transition-opacity">
                             <BarChart2 size={12} className="mr-1" /> Compare Algorithms
                         </Link>
                     </p>
@@ -52,7 +52,7 @@ const Categories = () => {
                     <input
                         type="text"
                         placeholder="Search algorithms..."
-                        className="w-full pl-10 pr-4 py-2 border border-border dark:border-border rounded-xl text-sm bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg focus:ring-2 focus:ring-indigo-500 outline-none"
+                        className="w-full pl-10 pr-4 py-2 border border-border dark:border-border rounded-xl text-sm bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg focus:ring-2 focus:ring-primary-accent outline-none"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -63,7 +63,7 @@ const Categories = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                 <button
                     onClick={() => setActiveCategory('all')}
-                    className={`p-4 rounded-xl flex items-center justify-center space-x-2 border transition-all ${activeCategory === 'all' ? 'border-primary-accent bg-primary-accent dark:bg-primary-accent/30 text-primary-accent dark:text-primary-accent font-semibold' : 'border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text hover:bg-primary-bg dark:hover:bg-slate-700'}`}
+                    className={`p-4 rounded-xl flex items-center justify-center space-x-2 border transition-all ${activeCategory === 'all' ? 'border-primary-accent bg-primary-accent dark:bg-primary-accent/30 text-white dark:text-white font-semibold' : 'border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text hover:bg-primary-bg dark:hover:bg-slate-700'}`}
                 >
                     <span>All Categories</span>
                 </button>
@@ -71,7 +71,7 @@ const Categories = () => {
                     <button
                         key={cat.id}
                         onClick={() => setActiveCategory(cat.id)}
-                        className={`p-4 rounded-xl flex flex-col items-center justify-center space-y-2 border transition-all ${activeCategory === cat.id ? 'border-primary-accent bg-primary-accent dark:bg-primary-accent/30 text-primary-accent dark:text-primary-accent font-semibold' : 'border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text hover:bg-primary-bg dark:hover:bg-slate-700'}`}
+                        className={`p-4 rounded-xl flex flex-col items-center justify-center space-y-2 border transition-all ${activeCategory === cat.id ? 'border-primary-accent bg-primary-accent dark:bg-primary-accent/30 text-white dark:text-white font-semibold' : 'border-border dark:border-border bg-secondary-bg dark:bg-sidebar text-secondary-text dark:text-secondary-text hover:bg-primary-bg dark:hover:bg-slate-700'}`}
                     >
                         {cat.icon}
                         <span className="text-sm">{cat.name}</span>

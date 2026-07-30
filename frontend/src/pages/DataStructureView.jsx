@@ -254,7 +254,7 @@ const DataStructureView = () => {
                                     {/* The Node */}
                                     <div className={`relative flex flex-col items-center justify-center min-w-[70px] min-h-[70px] border-2 rounded-xl text-lg font-bold transition-all duration-300 ${activeIdx === idx ? 'bg-primary-accent border-primary-accent text-secondary-bg scale-110 shadow-md' : 'bg-secondary-bg dark:bg-sidebar text-primary-text dark:text-secondary-bg border-border dark:border-border'}`}>
                                         {label && (
-                                            <div className="absolute -top-10 bg-primary-accent text-primary-accent dark:bg-primary-accent dark:text-primary-accent text-[10px] px-2 py-0.5 rounded font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform -translate-y-1">
+                                            <div className="absolute -top-10 bg-primary-accent text-white dark:bg-primary-accent dark:text-white text-[10px] px-2 py-0.5 rounded font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform -translate-y-1">
                                                 {label}
                                             </div>
                                         )}
@@ -392,7 +392,7 @@ const DataStructureView = () => {
                 <div className="lg:col-span-2 flex flex-col">
                     <div className="bg-secondary-bg dark:bg-sidebar rounded-xl shadow-md border border-border dark:border-border flex-grow relative overflow-hidden flex flex-col pt-10">
                         {currentOperation && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-primary-accent text-primary-accent dark:bg-primary-accent/90 dark:text-primary-accent px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-sm">
+                            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-primary-accent text-white dark:bg-primary-accent/90 dark:text-white px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-sm">
                                 {currentOperation}
                             </div>
                         )}

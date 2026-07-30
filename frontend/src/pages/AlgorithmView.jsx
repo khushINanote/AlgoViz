@@ -539,7 +539,7 @@ const AlgorithmView = () => {
 
                     {/* Step Description Toast */}
                     {currentState.stepDescription && currentState.stepDescription !== 'Loading...' && !showCompletionMessage && (
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-primary-accent/90 text-primary-accent dark:bg-primary-accent/90 dark:text-primary-accent px-4 sm:px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-[11px] sm:text-sm backdrop-blur-sm max-w-[90%] truncate">
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-primary-accent/90 text-primary-accent dark:bg-primary-accent/90 dark:text-white px-4 sm:px-6 py-1.5 rounded-full font-bold shadow-sm border border-primary-accent dark:border-primary-accent whitespace-nowrap transform transition-all text-[11px] sm:text-sm backdrop-blur-sm max-w-[90%] truncate">
                             {currentState.stepDescription}
                         </div>
                     )}
